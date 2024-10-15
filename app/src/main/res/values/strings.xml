@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">TestNavDicovent</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Upcoming</string>
+    <string name="title_notifications">Finished</string>
+    <string name="Registration">Daftar</string>
+    <string name="upcoming">Upcoming</string>
+    <string name="finished">Finished</string>
+    <string name="upcoming_events">Upcoming Events</string>
+    <string name="finished_events">Finished Events</string>
+    <string name="judul_kegiatan">Judul Kegiatan</string>
+    <string name="name_event">Name Event</string>
+    <string name="organizer">Penyelenggara</string>
+    <string name="start_time">Waktu Mulai</string>
+    <string name="end_time">Waktu Selesai</string>
+    <string name="quota">Kuota</string>
+    <string name="description_event">Description Event</string>
+</resources>

@@ -23,6 +23,12 @@ class HomeViewModel : ViewModel() {
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
 
+    private val _isLoading2 = MutableLiveData<Boolean>()
+    val isLoading2: LiveData<Boolean> = _isLoading2
+
+    private val _errorMessage = MutableLiveData<String?>()
+    val errorMessage: LiveData<String?> = _errorMessage
+
     fun loadUpcomingEvents() {
         _isLoading.value = true
         val apiService = ApiConfig.getApiService()
@@ -33,34 +39,34 @@ class HomeViewModel : ViewModel() {
                     val events = response.body()?.listEvents ?: emptyList()
                     _upcomingEvents.value = events
                 } else {
-                    _upcomingEvents.value = emptyList()
+                    _errorMessage.value = response.message()
                 }
             }
 
             override fun onFailure(call: Call<EventResponse>, t: Throwable) {
                 _isLoading.value = false
-                _upcomingEvents.value = emptyList()
+                _errorMessage.value = t.message
             }
         })
     }
 
     fun loadFinishedEvents() {
-        _isLoading.value = true
+        _isLoading2.value = true
         val apiService = ApiConfig.getApiService()
         apiService.getEvents(0).enqueue(object : Callback<EventResponse> {
             override fun onResponse(call: Call<EventResponse>, response: Response<EventResponse>) {
-                _isLoading.value = false
+                _isLoading2.value = false
                 if (response.isSuccessful) {
                     val events = response.body()?.listEvents ?: emptyList()
                     _finishedEvents.value = events
                 } else {
-                    _finishedEvents.value = emptyList()
+                    _errorMessage.value = response.message()
                 }
             }
 
             override fun onFailure(call: Call<EventResponse>, t: Throwable) {
-                _isLoading.value = false
-                _finishedEvents.value = emptyList()
+                _isLoading2.value = false
+                _errorMessage.value = t.message
             }
         })
     }

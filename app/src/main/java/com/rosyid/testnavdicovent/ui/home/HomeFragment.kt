@@ -83,6 +83,10 @@ class HomeFragment : Fragment() {
         homeViewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
             showLoading(isLoading)
         }
+
+        homeViewModel.isLoading2.observe(viewLifecycleOwner) { isLoading2 ->
+            showLoading2(isLoading2)
+        }
     }
 
     private fun navigateToDetail(eventId: String) {
@@ -94,6 +98,10 @@ class HomeFragment : Fragment() {
 
     private fun showLoading(isLoading: Boolean) {
         binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
+    }
+
+    private fun showLoading2(isLoading2: Boolean) {
+        binding.progressBar2.visibility = if (isLoading2) View.VISIBLE else View.GONE
     }
 
     private fun isInternetAvailable(): Boolean {
